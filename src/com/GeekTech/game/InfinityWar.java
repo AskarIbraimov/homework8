@@ -7,19 +7,19 @@ public class InfinityWar {
     private static int round = 0;
 
     public static void StartBattle() {
-        Boss thanos = new Boss(1000, 50, "Thanos");
-        CaptainAmerica captainAmerica = new CaptainAmerica(0, 25, "Captain America",
+        Boss thanos = new Boss(3300, 50, "Thanos");
+        CaptainAmerica captainAmerica = new CaptainAmerica(220, 25, "Captain America",
                 EnumSuperAbility.SHIELD_DAMAGE);
 
-        IronMan ironMan = new IronMan(00, 0, "Iron Man",
+        IronMan ironMan = new IronMan(200, 20, "Iron Man",
                 EnumSuperAbility.TO_FLY);
 
-        Hulk hulk = new Hulk(1000, 1, "Hulk ",
+        Hulk hulk = new Hulk(300, 35, "Hulk ",
                 EnumSuperAbility.ALL_CRASH);
 
-        Medic doc = new Medic(00, 0, "Doctor", EnumSuperAbility.TO_HEAL,10);
+        Medic doc = new Medic(200, 0, "Doctor", EnumSuperAbility.TO_HEAL,10);
 
-        Medic assistant = new Medic(0, 0, "Assistant", EnumSuperAbility.TO_HEAL,5 );
+        Medic assistant = new Medic(230, 0, "Assistant", EnumSuperAbility.TO_HEAL,5 );
 
         Avenger[] avengers = {captainAmerica, ironMan, hulk, doc, assistant};
         System.out.println("___The_Infinity_War_Started___");
