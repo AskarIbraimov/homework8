@@ -7,21 +7,28 @@ public class InfinityWar {
     private static int round = 0;
 
     public static void StartBattle() {
-        Boss thanos = new Boss(3300, 50, "Thanos");
+        Boss thanos = new Boss(4000, 100, "Thanos");
+
         CaptainAmerica captainAmerica = new CaptainAmerica(220, 25, "Captain America",
                 EnumSuperAbility.SHIELD_DAMAGE);
 
-        IronMan ironMan = new IronMan(200, 20, "Iron Man",
+        IronMan ironMan = new IronMan(350, 20, "Iron Man",
                 EnumSuperAbility.TO_FLY);
 
-        Hulk hulk = new Hulk(300, 35, "Hulk ",
+        Hulk hulk = new Hulk(160, 1, "Hulk ",
                 EnumSuperAbility.ALL_CRASH);
 
-        Medic doc = new Medic(200, 0, "Doctor", EnumSuperAbility.TO_HEAL,10);
+        Medic doc = new Medic(350, 0, "Doctor", EnumSuperAbility.TO_HEAL,10);
 
-        Medic assistant = new Medic(230, 0, "Assistant", EnumSuperAbility.TO_HEAL,5 );
+        Medic assistant = new Medic(450, 0, "Assistant", EnumSuperAbility.TO_HEAL,5 );
 
-        Avenger[] avengers = {captainAmerica, ironMan, hulk, doc, assistant};
+        Avenger thor = new Thor(250,0,"Thor",EnumSuperAbility.TO_STUN,50);
+
+        Tank tank = new Tank(500,5,"Tank",EnumSuperAbility.FACE_BLOCK);
+
+        Witcher witcher = new Witcher(350,0,"Witcher",EnumSuperAbility.SECOND_LIFE);
+
+        Avenger[] avengers = {captainAmerica, ironMan, hulk, doc, assistant,thor,tank,witcher};
         System.out.println("___The_Infinity_War_Started___");
 
         while (!isGameFinished(thanos, avengers)){
@@ -71,21 +78,29 @@ public class InfinityWar {
 
 
 
-    private static void avengersDamage(Boss thanos,Avenger[] avengers){
+    private static void avengersDamage(
+            Boss thanos, Avenger[] avengers){
         for (int i = 0; i < avengers.length; i++) {
-            if(thanos.getHealth() > 0 && avengers[i].getHealth() > 0){
-
-                thanos.setHealth(thanos.getHealth() - avengers[i].getDamage());
+            if (thanos.getHealth() > 0 &&
+                    avengers[i].getHealth() > 0){
+                thanos.setHealth(thanos.getHealth() -
+                        avengers[i].getDamage());
             }
         }
     }
 
-    private static void thanosDamage(Boss thanos,Avenger[] avengers){
+    private static void thanosDamage(
+            Boss thanos, Avenger[] avengers){
+        if (thanos.isStunned()){
+            thanos.setStunned(false);
+            return;
+        }
         for (int i = 0; i < avengers.length; i++) {
-          if(thanos.getHealth() > 0 && avengers[i].getHealth() > 0){
-              avengers[i].setHealth
-              (avengers[i].getHealth() - thanos.getDamage());
-          }
+            if (thanos.getHealth() > 0 &&
+                    avengers[i].getHealth() > 0){
+                avengers[i].setHealth(avengers[i].getHealth()
+                        - thanos.getDamage());
+            }
         }
     }
 
